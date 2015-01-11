@@ -1,29 +1,25 @@
-_G.AUTOUPDATE = true
+--[[
+EEEEEEEEEEEEEEEEEEEEEE                              iiii       LLLLLLLLLLL
+E::::::::::::::::::::E                             i::::i      L:::::::::L
+E::::::::::::::::::::E                              iiii       L:::::::::L
+EE::::::EEEEEEEEE::::E                                         LL:::::::LL
+  E:::::E       EEEEEE     nnnn  nnnnnnnn         iiiiiii        L:::::L                    yyyyyyy           yyyyyyy
+  E:::::E                  n:::nn::::::::nn       i:::::i        L:::::L                     y:::::y         y:::::y
+  E::::::EEEEEEEEEE        n::::::::::::::nn       i::::i        L:::::L                      y:::::y       y:::::y
+  E:::::::::::::::E        nn:::::::::::::::n      i::::i        L:::::L                       y:::::y     y:::::y
+  E:::::::::::::::E          n:::::nnnn:::::n      i::::i        L:::::L                        y:::::y   y:::::y
+  E::::::EEEEEEEEEE          n::::n    n::::n      i::::i        L:::::L                         y:::::y y:::::y
+  E:::::E                    n::::n    n::::n      i::::i        L:::::L                          y:::::y:::::y
+  E:::::E       EEEEEE       n::::n    n::::n      i::::i        L:::::L         LLLLLL            y:::::::::y
+EE::::::EEEEEEEE:::::E       n::::n    n::::n     i::::::i     LL:::::::LLLLLLLLL:::::L             y:::::::y
+E::::::::::::::::::::E       n::::n    n::::n     i::::::i     L::::::::::::::::::::::L              y:::::y
+E::::::::::::::::::::E       n::::n    n::::n     i::::::i     L::::::::::::::::::::::L             y:::::y
+EEEEEEEEEEEEEEEEEEEEEE       nnnnnn    nnnnnn     iiiiiiii     LLLLLLLLLLLLLLLLLLLLLLLL            y:::::y
+                                                                                                  y:::::y
+                                                                                                 y:::::y
+                                                                                                y:::::y
+                                                                                               y:::::y
+                                                                                              yyyyyyy
+--]]
 
-local version = "1.1"
-local UPDATE_HOST = "raw.github.com"
-local UPDATE_PATH = "/EniLy/BoL/master/EniLy 多合一.lua".."?rand="..math.random(1,10000)
-local UPDATE_FILE_PATH = SCRIPT_PATH..GetCurrentEnv().FILE_NAME
-local UPDATE_URL = "https://"..UPDATE_HOST..UPDATE_PATH
-function AutoupdaterMsg(msg) print("<font color=\"#FFFF00\"><b>EniLy 多合一:</b></font> <font color=\"#FFFFFF\">"..msg..".</font>") end
-
-if _G.AUTOUPDATE then
-	local ServerData = GetWebResult(UPDATE_HOST, "/EniLy/BoL/master/version/EniLy 多合一.版本")
-	if ServerData then
-	ServerVersion = type(tonumber(ServerData)) == "number" and tonumber(ServerData) or nil
-		if ServerVersion then
-			if tonumber(version) < ServerVersion then
-			AutoupdaterMsg("发现新版本 "..ServerVersion)
-			AutoupdaterMsg("更新中，请不要按F9")
-			DelayAction(function() DownloadFile(UPDATE_URL, UPDATE_FILE_PATH, function () AutoupdaterMsg("更新成功. ("..version.." => "..ServerVersion.."), 双击F9重载脚本.") end) end, 3)
-			else
-			AutoupdaterMsg("当前版本已是最新：("..ServerVersion..")")
-			end
-		end
-	else
-		AutoupdaterMsg("更新信息错误！")
-	end
-end
-function OnLoad()
-	Surrender = scriptConfig("测试", "Surrender")
-end
+assert(load(Base64Decode("G0x1YVIAAQQEBAgAGZMNChoKAAAAAAAAAAAAAQpSAAAABgBAAAqAwIABwAAAQQABAIFAAQDBgAEABsFBAAcBQgJBQQIAgYECAB2BgAGWAAEBxsBCAAYBQwAdgYAAB0FDAtYAgQEBgQMAQAGAAIABAAEWgQECZQEAAAhAgYdGAUAAR0HAAlsBAAAXwAyARgFEAIABgADBQQQAXYGAAVsBAAAXgAqAhsFEAMYBRQAAAoAC3QEAAZ2BAAAYQEUDFwABgIYBRQDAAYACnYEAAZtBAAAXAACAhAEAAAiAAYmGgUQAmwEAABcAB4CGAUUAwAEAAJ2BAAHGgUQAGcABAxcAA4CGwUMAwYEFAAaCRADWAYIDnUEAAYbBQwDBwQUAnUEAAYYBRgDlQQAAAUIGAJ1BgAEXQAKAhsFDAMGBBgAGgkQAQcIGANZBggOdQQABF4AAgIbBQwDBAQcAnUEAAWWBAAAIQIGOHwCAAB4AAAAEAwAAAF9HAAQLAAAAQVVUT1VQREFURQABAQQEAAAAMS4xAAQPAAAAcmF3LmdpdGh1Yi5jb20ABCcAAAAvRW5pTHkvQm9ML21hc3Rlci9FbmlMeSBBbGwtSW4tT25lLmx1YQAEBwAAAD9yYW5kPQAEBQAAAG1hdGgABAcAAAByYW5kb20AAwAAAAAAAPA/AwAAAAAAiMNABAwAAABTQ1JJUFRfUEFUSAAEDgAAAEdldEN1cnJlbnRFbnYABAoAAABGSUxFX05BTUUABAkAAABodHRwczovLwAEDwAAAEF1dG91cGRhdGVyTXNnAAQNAAAAR2V0V2ViUmVzdWx0AAQzAAAAL0VuaUx5L0JvTC9tYXN0ZXIvdmVyc2lvbi9FbmlMeSBBbGwtSW4tT25lLnZlcnNpb24ABA4AAABTZXJ2ZXJWZXJzaW9uAAQFAAAAdHlwZQAECQAAAHRvbnVtYmVyAAQHAAAAbnVtYmVyAAQNAAAAt6LP1tDCsOaxvqO6AAQUAAAAuPzQwtbQo6zH67K70qqwtEY5LgAEDAAAAERlbGF5QWN0aW9uAAMAAAAAAAAIQAQUAAAAtbHHsLDmsb7S0crH1+7QwqO6KAAEAgAAACkABA0AAAC4/NDC0MXPorTtzvMABAcAAABPbkxvYWQAAwAAAAQAAAAGAAAAAQAFBwAAAEYAQACBQAAAwAAAAAGBAACWAAEBXUAAAR8AgAADAAAABAYAAABwcmludAAESQAAADxmb250IGNvbG9yPSIjRkZGRjAwIj48Yj5FbmlMeSC24LrP0rs6PC9iPjwvZm9udD4gPGZvbnQgY29sb3I9IiNGRkZGRkYiPgAECAAAADwvZm9udD4AAAAAAAEAAAAAABAAAABAb2JmdXNjYXRlZC5sdWEABwAAAAUAAAAGAAAABgAAAAYAAAAGAAAABQAAAAYAAAABAAAAAwAAAGFiAAAAAAAHAAAAAQAAAAUAAABfRU5WAA8AAAATAAAAAAAEBgAAAAYAQABFAIAAhQAAAeUAAAAdQAACHwCAAAEAAAAEDQAAAERvd25sb2FkRmlsZQABAAAAEAAAABMAAAAAAAYJAAAABgBAAEFAAACFAIAAwYAAAAbBQABBAQEAVkCBAB1AAAEfAIAABQAAAAQPAAAAQXV0b3VwZGF0ZXJNc2cABAwAAAC4/NDCs8m5pi4gKAAEBgAAACA+Pj4gAAQOAAAAU2VydmVyVmVyc2lvbgAEEwAAACksIMuru/dGOdbY1Ni9xbG+LgAAAAAAAgAAAAAAAAMQAAAAQG9iZnVzY2F0ZWQubHVhAAkAAAARAAAAEgAAABMAAAATAAAAEwAAABMAAAATAAAAEQAAABMAAAAAAAAAAgAAAAUAAABfRU5WAAMAAABhYQAEAAAAAAABBAEDAQAQAAAAQG9iZnVzY2F0ZWQubHVhAAYAAAAQAAAAEAAAABAAAAATAAAAEAAAABMAAAAAAAAABAAAAAUAAABfRU5WAAMAAABfYgADAAAAZGEAAwAAAGFhABUAAAAVAAAAAAADBgAAAAZAQABBgAAAgQAAAB2AgAEIAACAHwCAAAMAAAAECgAAAFN1cnJlbmRlcgAEDQAAAHNjcmlwdENvbmZpZwAEBQAAALLiytQAAAAAAAEAAAAAABAAAABAb2JmdXNjYXRlZC5sdWEABgAAABUAAAAVAAAAFQAAABUAAAAVAAAAFQAAAAAAAAABAAAABQAAAF9FTlYAAQAAAAEAEAAAAEBvYmZ1c2NhdGVkLmx1YQBSAAAAAQAAAAEAAAABAAAAAQAAAAIAAAACAAAAAwAAAAMAAAADAAAAAwAAAAMAAAACAAAAAwAAAAMAAAADAAAAAwAAAAMAAAAEAAAABAAAAAQAAAAEAAAABgAAAAQAAAAHAAAABwAAAAcAAAAHAAAACAAAAAgAAAAIAAAACAAAAAkAAAAJAAAACgAAAAoAAAAKAAAACgAAAAoAAAAKAAAACgAAAAoAAAAKAAAACgAAAAoAAAAKAAAACgAAAAoAAAALAAAACwAAAAsAAAANAAAADQAAAA0AAAANAAAADQAAAA0AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA8AAAATAAAAEwAAAA8AAAATAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABQAAAAUAAAAFAAAABUAAAAVAAAAFQAAAAYAAAADAAAAYWEAAwAAAFIAAAADAAAAYmEABAAAAFIAAAADAAAAY2EADAAAAFIAAAADAAAAZGEAEQAAAFIAAAADAAAAX2IAFQAAAFIAAAADAAAAYWIAHwAAAE8AAAABAAAABQAAAF9FTlYA"), nil, "bt", _ENV))()
