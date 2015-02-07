@@ -1305,8 +1305,8 @@ end
         vector:polar()                          -- return the angle from axe
         vector:angleBetween(v1, v2)             -- return the angle formed from vector to v1,v2
         vector:compare(v)                       -- compare vector and v
-        vector:perpendicular()                  -- return new Vector rotated 90бу right
-        vector:perpendicular2()                 -- return new Vector rotated 90бу left
+        vector:perpendicular()                  -- return new Vector rotated 90° right
+        vector:perpendicular2()                 -- return new Vector rotated 90° left
 ]]
 -- STAND ALONE FUNCTIONS
 function VectorType(v)
@@ -5651,5 +5651,3 @@ end
 function ChampionLane__OnTick()
     deprecatedError("ChampionLane__OnTick()")
 end
-
--------------------- END WARNING FOR FUNCTIONS NOT USED ANYMORE ----------------------
